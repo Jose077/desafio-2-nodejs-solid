@@ -1,5 +1,6 @@
 import { User } from "../../model/User";
 import { IUsersRepository, ICreateUserDTO } from "../IUsersRepository";
+import { v4 as uuidV4 } from "uuid"
 
 class UsersRepository implements IUsersRepository {
   private users: User[];
@@ -19,7 +20,18 @@ class UsersRepository implements IUsersRepository {
   }
 
   create({ name, email }: ICreateUserDTO): User {
-    // Complete aqui
+     const user = new User();
+
+     Object.assign(user, {
+       id: uuidV4(),
+       name,
+       email,
+     })
+
+     this.users.push(user)
+
+     return user
+
   }
 
   findById(id: string): User | undefined {

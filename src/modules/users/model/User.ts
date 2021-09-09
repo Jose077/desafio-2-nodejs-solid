@@ -11,7 +11,19 @@ class User {
   
     created_at: Date;
   
-    updated_at: Date;
+    updated_at: Date | null;
+
+    constructor() {
+        if(!this.id){
+           this.id = uuidV4();
+        }
+        this.admin = false;
+
+        this.created_at = new Date();
+        this.admin = false;
+        this.updated_at = new Date()
+        
+    }
 }
 
 export { User };
